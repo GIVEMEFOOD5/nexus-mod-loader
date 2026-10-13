@@ -216,6 +216,13 @@ target_sources(EndlessSkyLib PRIVATE
 	MiniMap.h
 	Mission.cpp
 	Mission.h
+	mod/ModHost.h
+	mod/ModManager.cpp
+	mod/ModManager.h
+	mod/ModManifest.cpp
+	mod/ModManifest.h
+	mod/WasmMod.cpp
+	mod/WasmMod.h
 	MissionAction.cpp
 	MissionAction.h
 	MissionTimer.cpp

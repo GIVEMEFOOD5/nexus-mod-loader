@@ -1,0 +1,5 @@
+name = "with-permission"
+version = "0.0.1"
+api_version = 1
+permissions = ["conditions-write"]
+ai_generated = { tool = "Claude", scope = ["code"], human_reviewed = false }

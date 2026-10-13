@@ -33,6 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameWindow.h"
 #include "Interface.h"
 #include "Logger.h"
+#include "mod/ModManager.h"
 #include "MainPanel.h"
 #include "MenuPanel.h"
 #include "Panel.h"
@@ -109,6 +110,9 @@ int main(int argc, char *argv[])
 	bool printTests = false;
 	bool printData = false;
 	bool noTestMute = false;
+	bool modsEnabled = true;
+	bool modDevMode = false;
+	bool listMods = false;
 	uint64_t nWorkerThreads = 0;
 	string testToRunName;
 
@@ -148,6 +152,12 @@ int main(int argc, char *argv[])
 			printTests = true;
 		else if(arg == "--nomute")
 			noTestMute = true;
+		else if(arg == "--no-mods")
+			modsEnabled = false;
+		else if(arg == "--mod-dev")
+			modDevMode = true;
+		else if(arg == "--mods")
+			listMods = true;
 		else if(arg == "--rngseed" && *++it)
 			Random::SetFixedSeed(std::stoull(*it));
 		else if(arg == "--tq-threads" && *++it)
@@ -164,6 +174,15 @@ int main(int argc, char *argv[])
 	bool isConsoleOnly = loadOnly || printTests || printData;
 
 	Logger::Session logSession{isConsoleOnly || isTesting};
+
+	// Start code mods (see source/mod/ModManager.h).
+	ModManager::Init(modsEnabled, modDevMode);
+	if(listMods)
+	{
+		ModManager::Print(cout);
+		ModManager::Shutdown();
+		return 0;
+	}
 
 	try {
 		// Load plugin settings and preferences before game data.
@@ -281,6 +300,7 @@ int main(int argc, char *argv[])
 	Preferences::Save();
 	Plugins::Save();
 
+	ModManager::Shutdown();
 	Audio::Quit();
 	GameWindow::Quit();
 
@@ -634,6 +654,9 @@ void PrintHelp()
 	cerr << "    --tests: print table of available tests, then exit." << endl;
 	cerr << "    --test <name>: run given test from resources directory." << endl;
 	cerr << "    --nomute: don't mute the game while running tests." << endl;
+	cerr << "    --mods: list the code mods in the mods folder and their status, then exit." << endl;
+	cerr << "    --no-mods: start without running any code mods." << endl;
+	cerr << "    --mod-dev: reload a code mod whenever its .wasm file changes." << endl;
 	cerr << "    --rng-seed <seed>: every time the pseudo-random number generator is seeded,"
 		" it will be given this value." << endl;
 	cerr << "    --tq-threads: sets the number of threads used for the internal queue of tasks."

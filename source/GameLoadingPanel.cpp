@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Conversation.h"
 #include "ConversationPanel.h"
 #include "GameData.h"
+#include "mod/ModManager.h"
 #include "image/MaskManager.h"
 #include "MenuAnimationPanel.h"
 #include "MenuPanel.h"
@@ -58,6 +59,7 @@ void GameLoadingPanel::Step()
 		GameData::FinishLoading();
 
 		player.LoadRecent();
+		ModManager::DataLoaded(player);
 
 		// All sprites with collision masks should also have their 1x scaled versions, so create
 		// any additional scaled masks from the default one.

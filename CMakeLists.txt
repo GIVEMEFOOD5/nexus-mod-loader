@@ -100,6 +100,9 @@ else()
 	find_package(FLAC CONFIG REQUIRED)
 endif()
 
+# Wasmtime runs WebAssembly code mods (see source/mod/).
+include(utils/wasmtime.cmake)
+
 # Find the zip-reading component of zlib.
 find_package(ZLIB REQUIRED)
 
@@ -166,6 +169,7 @@ if(MINGW)
 endif()
 
 # Link with the general libraries.
+target_link_libraries(ExternalLibraries INTERFACE wasmtime::wasmtime)
 target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG avif
 	OpenAL::OpenAL ${MINIZIP_LIBRARIES} FLAC::FLAC++ "$<IF:$<CONFIG:Debug>,${LIBMAD_LIB_DEBUG},${LIBMAD_LIB_RELEASE}>")
 

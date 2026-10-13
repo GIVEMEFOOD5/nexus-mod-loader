@@ -1,0 +1,22 @@
+# Every code mod has a mod.toml next to its .wasm file.
+name = "hello-c"
+version = "1.0.0"
+authors = ["Your Name"]
+description = "Greets you in each new system and reports your credits once a minute."
+homepage = ""
+
+runtime = "wasm"
+entry = "mod.wasm"
+api_version = 1
+game_versions = ["0.11"]
+hooks = ["init", "data_loaded", "frame", "event"]
+
+# Ask for what you need. This example only reads, so it needs nothing.
+# "conditions-write" lets a mod change game conditions.
+permissions = []
+
+dependencies = []
+conflicts = []
+
+# Fill this in honestly if any part was made with AI. Shown to players as a warning.
+# ai_generated = { tool = "...", scope = ["code"], human_reviewed = true }

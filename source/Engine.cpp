@@ -38,6 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Hazard.h"
 #include "Interface.h"
 #include "Logger.h"
+#include "mod/ModManager.h"
 #include "MapPanel.h"
 #include "image/Mask.h"
 #include "Messages.h"
@@ -520,6 +521,8 @@ void Engine::Step(bool isActive)
 				SpriteLoadManager::LoadDeferred(asyncQueue, object.GetSprite());
 
 	// The calculation thread was paused by MainPanel before calling this function, so it is safe to access things.
+	if(isActive)
+		ModManager::Frame(player);
 	const shared_ptr<Ship> flagship = player.FlagshipPtr();
 	const StellarObject *object = player.GetStellarObject();
 	if(object)
@@ -1512,6 +1515,7 @@ void Engine::EnterSystem()
 		+ today.ToString() + (system->IsInhabited(flagship) ?
 		"." : ". No inhabited planets detected."),
 		GameData::MessageCategories().Get("daily")});
+	ModManager::Event(player, ModEvent::ENTER_SYSTEM, system->TrueName());
 
 	// Preload landscapes and determine if the player used a wormhole.
 	// (It is allowed for a wormhole's exit point to have no sprite.)

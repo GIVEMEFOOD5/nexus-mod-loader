@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Logger.h"
 #include "Messages.h"
+#include "mod/ModManager.h"
 #include "Outfit.h"
 #include "Person.h"
 #include "PilotProfile.h"
@@ -931,6 +932,7 @@ void PlayerInfo::AdvanceDate(int amount)
 	// just reducing the cached values by 1 because the player may have
 	// explored new systems that change the DistanceMap calculations.
 	CacheMissionInformation(true);
+	ModManager::Event(*this, ModEvent::DAY_PASSED, date.ToString());
 }
 
 
@@ -1839,6 +1841,7 @@ void PlayerInfo::Land(UI &ui)
 		}
 	}
 
+	ModManager::Event(*this, ModEvent::LAND, planet->TrueName());
 	freshlyLoaded = false;
 	flagship.reset();
 }
@@ -2075,6 +2078,7 @@ bool PlayerInfo::TakeOff(UI &ui, const bool distributeCargo)
 	// Determine the scanners available to the player's fleet.
 	CalculateScanners();
 
+	ModManager::Event(*this, ModEvent::TAKE_OFF, planet ? planet->TrueName() : "");
 	this->previousPlanet = planet;
 	return true;
 }
