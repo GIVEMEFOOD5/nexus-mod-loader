@@ -114,11 +114,11 @@ Strings are UTF-8, passed as pointer and length into the module's exported `memo
 ### C and C++
 
 ```sh
-clang --target=wasm32 -O2 -nostdlib -Wl,--no-entry -I mods-sdk/c -o mod.wasm mod.c
+clang --target=wasm32 -O2 -nostdlib -fno-builtin -Wl,--no-entry -I mods-sdk/c -o mod.wasm mod.c
 ```
 
 See `examples/hello-c` for a complete mod and build script. C++ works the same way
-with `clang++ ... -fno-exceptions -fno-rtti`. There is no C library in the sandbox;
+with `clang++ ... -fno-builtin -fno-exceptions -fno-rtti`. There is no C library in the sandbox;
 `es_mod.h` includes a small string builder instead of `printf`.
 
 ### Other languages

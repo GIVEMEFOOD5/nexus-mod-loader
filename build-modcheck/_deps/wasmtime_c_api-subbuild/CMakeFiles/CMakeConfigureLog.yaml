@@ -1,0 +1,76 @@
+
+---
+events:
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineSystem.cmake:12 (find_program)"
+      - "CMakeLists.txt:16 (project)"
+    mode: "program"
+    variable: "CMAKE_UNAME"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "uname"
+    candidate_directories:
+      - "/home/givemefood5/Documents/GitHub/nexus-mod-loader/manager/node_modules/.bin/"
+      - "/home/givemefood5/Documents/GitHub/nexus-mod-loader/node_modules/.bin/"
+      - "/home/givemefood5/Documents/GitHub/node_modules/.bin/"
+      - "/home/givemefood5/Documents/node_modules/.bin/"
+      - "/home/givemefood5/node_modules/.bin/"
+      - "/home/node_modules/.bin/"
+      - "/node_modules/.bin/"
+      - "/usr/lib/node_modules_22/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin/"
+      - "/home/givemefood5/.local/bin/"
+      - "/home/givemefood5/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/usr/bin/"
+      - "/bin/"
+    searched_directories:
+      - "/home/givemefood5/Documents/GitHub/nexus-mod-loader/manager/node_modules/.bin/uname"
+      - "/home/givemefood5/Documents/GitHub/nexus-mod-loader/node_modules/.bin/uname"
+      - "/home/givemefood5/Documents/GitHub/node_modules/.bin/uname"
+      - "/home/givemefood5/Documents/node_modules/.bin/uname"
+      - "/home/givemefood5/node_modules/.bin/uname"
+      - "/home/node_modules/.bin/uname"
+      - "/node_modules/.bin/uname"
+      - "/usr/lib/node_modules_22/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin/uname"
+      - "/home/givemefood5/.local/bin/uname"
+      - "/home/givemefood5/bin/uname"
+      - "/usr/local/sbin/uname"
+      - "/usr/local/bin/uname"
+      - "/usr/sbin/uname"
+    found: "/usr/bin/uname"
+    search_context:
+      ENV{PATH}:
+        - "/home/givemefood5/Documents/GitHub/nexus-mod-loader/manager/node_modules/.bin"
+        - "/home/givemefood5/Documents/GitHub/nexus-mod-loader/node_modules/.bin"
+        - "/home/givemefood5/Documents/GitHub/node_modules/.bin"
+        - "/home/givemefood5/Documents/node_modules/.bin"
+        - "/home/givemefood5/node_modules/.bin"
+        - "/home/node_modules/.bin"
+        - "/node_modules/.bin"
+        - "/usr/lib/node_modules_22/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin"
+        - "/home/givemefood5/.local/bin"
+        - "/home/givemefood5/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineSystem.cmake:212 (message)"
+      - "CMakeLists.txt:16 (project)"
+    message: |
+      The system is: Linux - 7.2.9-201.fc44.x86_64 - x86_64
+...

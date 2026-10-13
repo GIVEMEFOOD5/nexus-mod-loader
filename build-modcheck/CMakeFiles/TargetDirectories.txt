@@ -1,0 +1,3 @@
+/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/CMakeFiles/modcheck.dir
+/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/CMakeFiles/edit_cache.dir
+/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/CMakeFiles/rebuild_cache.dir

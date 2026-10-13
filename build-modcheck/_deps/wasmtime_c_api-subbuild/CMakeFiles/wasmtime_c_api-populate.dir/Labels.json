@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/_deps/wasmtime_c_api-subbuild/CMakeFiles/wasmtime_c_api-populate"
+		},
+		{
+			"file" : "/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/_deps/wasmtime_c_api-subbuild/CMakeFiles/wasmtime_c_api-populate.rule"
+		},
+		{
+			"file" : "/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/_deps/wasmtime_c_api-subbuild/CMakeFiles/wasmtime_c_api-populate-complete.rule"
+		},
+		{
+			"file" : "/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/_deps/wasmtime_c_api-subbuild/wasmtime_c_api-populate-prefix/src/wasmtime_c_api-populate-stamp/wasmtime_c_api-populate-build.rule"
+		},
+		{
+			"file" : "/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/_deps/wasmtime_c_api-subbuild/wasmtime_c_api-populate-prefix/src/wasmtime_c_api-populate-stamp/wasmtime_c_api-populate-configure.rule"
+		},
+		{
+			"file" : "/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/_deps/wasmtime_c_api-subbuild/wasmtime_c_api-populate-prefix/src/wasmtime_c_api-populate-stamp/wasmtime_c_api-populate-download.rule"
+		},
+		{
+			"file" : "/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/_deps/wasmtime_c_api-subbuild/wasmtime_c_api-populate-prefix/src/wasmtime_c_api-populate-stamp/wasmtime_c_api-populate-install.rule"
+		},
+		{
+			"file" : "/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/_deps/wasmtime_c_api-subbuild/wasmtime_c_api-populate-prefix/src/wasmtime_c_api-populate-stamp/wasmtime_c_api-populate-mkdir.rule"
+		},
+		{
+			"file" : "/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/_deps/wasmtime_c_api-subbuild/wasmtime_c_api-populate-prefix/src/wasmtime_c_api-populate-stamp/wasmtime_c_api-populate-patch.rule"
+		},
+		{
+			"file" : "/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/_deps/wasmtime_c_api-subbuild/wasmtime_c_api-populate-prefix/src/wasmtime_c_api-populate-stamp/wasmtime_c_api-populate-test.rule"
+		},
+		{
+			"file" : "/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/_deps/wasmtime_c_api-subbuild/wasmtime_c_api-populate-prefix/src/wasmtime_c_api-populate-stamp/wasmtime_c_api-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"wasmtime_c_api-populate"
+		],
+		"name" : "wasmtime_c_api-populate"
+	}
+}

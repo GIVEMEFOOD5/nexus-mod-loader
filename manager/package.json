@@ -1,0 +1,14 @@
+{
+  "name": "nexus-mod-manager",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Choose, test and run code mods for Endless Sky",
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "dev": "tauri dev",
+    "build": "tauri build"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.0.0"
+  }
+}

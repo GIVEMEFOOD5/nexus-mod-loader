@@ -1,0 +1,11 @@
+# Hashes of file build rules.
+bc97de1746f9af76ee9acf46239522ca CMakeFiles/wasmtime_c_api-populate
+77292004a376cf62e6f8508e8e5693d8 CMakeFiles/wasmtime_c_api-populate-complete
+b2c23d0aeedc4a66f7283eb36cf91759 wasmtime_c_api-populate-prefix/src/wasmtime_c_api-populate-stamp/wasmtime_c_api-populate-build
+a31f27680580ece6c6ac7b96f9fba539 wasmtime_c_api-populate-prefix/src/wasmtime_c_api-populate-stamp/wasmtime_c_api-populate-configure
+a3992c0772803660f2629a703a4b9ce0 wasmtime_c_api-populate-prefix/src/wasmtime_c_api-populate-stamp/wasmtime_c_api-populate-download
+f967755e2b860480c2617306ca5c1d89 wasmtime_c_api-populate-prefix/src/wasmtime_c_api-populate-stamp/wasmtime_c_api-populate-install
+eaa8f16a8c81cf46f993dc25759f2bc6 wasmtime_c_api-populate-prefix/src/wasmtime_c_api-populate-stamp/wasmtime_c_api-populate-mkdir
+b9d49bb840283181319ba521be2449b1 wasmtime_c_api-populate-prefix/src/wasmtime_c_api-populate-stamp/wasmtime_c_api-populate-patch
+4f71e2186b517adb87c09893b354d8b7 wasmtime_c_api-populate-prefix/src/wasmtime_c_api-populate-stamp/wasmtime_c_api-populate-test
+4e12ec0e8ff4097d4f29799565de65aa wasmtime_c_api-populate-prefix/src/wasmtime_c_api-populate-stamp/wasmtime_c_api-populate-update

@@ -2,7 +2,7 @@
 
 Build a mod with clang (no C library needed):
 
-    clang --target=wasm32 -O2 -nostdlib -Wl,--no-entry -I path/to/sdk/c -o mod.wasm mod.c
+    clang --target=wasm32 -O2 -nostdlib -fno-builtin -Wl,--no-entry -I path/to/sdk/c -o mod.wasm mod.c
 
 In exactly one source file, write ES_MOD_SETUP(); once at file scope.
 
@@ -138,13 +138,70 @@ static inline void es_str_add_int(es_str *s, long long value)
 		es_str_add_n(s, &digits[n], 1);
 }
 
-/* Required boilerplate: the API version export and the scratch buffer the game
-   uses to pass event text to the mod. Use once per mod, at file scope. */
+#ifdef __cplusplus
+#define ES_EXTERN_C extern "C"
+#else
+#define ES_EXTERN_C
+#endif
+
+/* There is no C library in the sandbox, but compilers turn some loops and struct
+   copies into calls to strlen, memcpy, memset, memmove or memcmp (clang 21 does
+   this even for es_strlen above). ES_MOD_SETUP() provides small versions of them.
+   no_builtin stops the compiler turning these bodies back into calls to themselves. */
+#define ES_MOD_LIBC_SHIMS() \
+	ES_EXTERN_C __attribute__((no_builtin)) __SIZE_TYPE__ strlen(const char *s) \
+	{ \
+		const char *p = s; \
+		while(*p) \
+			++p; \
+		return (__SIZE_TYPE__)(p - s); \
+	} \
+	ES_EXTERN_C __attribute__((no_builtin)) void *memcpy(void *to, const void *from, __SIZE_TYPE__ n) \
+	{ \
+		unsigned char *d = (unsigned char *)to; \
+		const unsigned char *s = (const unsigned char *)from; \
+		while(n--) \
+			*d++ = *s++; \
+		return to; \
+	} \
+	ES_EXTERN_C __attribute__((no_builtin)) void *memmove(void *to, const void *from, __SIZE_TYPE__ n) \
+	{ \
+		unsigned char *d = (unsigned char *)to; \
+		const unsigned char *s = (const unsigned char *)from; \
+		if(d < s) \
+			while(n--) \
+				*d++ = *s++; \
+		else \
+			while(n--) \
+				d[n] = s[n]; \
+		return to; \
+	} \
+	ES_EXTERN_C __attribute__((no_builtin)) void *memset(void *to, int value, __SIZE_TYPE__ n) \
+	{ \
+		unsigned char *d = (unsigned char *)to; \
+		while(n--) \
+			*d++ = (unsigned char)value; \
+		return to; \
+	} \
+	ES_EXTERN_C __attribute__((no_builtin)) int memcmp(const void *a, const void *b, __SIZE_TYPE__ n) \
+	{ \
+		const unsigned char *x = (const unsigned char *)a; \
+		const unsigned char *y = (const unsigned char *)b; \
+		for(; n; --n, ++x, ++y) \
+			if(*x != *y) \
+				return *x - *y; \
+		return 0; \
+	}
+
+/* Required boilerplate: the API version export, the scratch buffer the game uses
+   to pass event text to the mod, and the C library shims. Use once per mod, at
+   file scope, in exactly one source file. */
 #define ES_MOD_SCRATCH_SIZE 65536
 #define ES_MOD_SETUP() \
-	ES_EXPORT(es_mod_api_version) int es_mod_api_version(void) { return ES_MOD_API_VERSION; } \
+	ES_MOD_LIBC_SHIMS() \
+	ES_EXTERN_C ES_EXPORT(es_mod_api_version) int es_mod_api_version(void) { return ES_MOD_API_VERSION; } \
 	static char es_mod_scratch_buffer[ES_MOD_SCRATCH_SIZE]; \
-	ES_EXPORT(es_scratch) char *es_scratch(int size) \
+	ES_EXTERN_C ES_EXPORT(es_scratch) char *es_scratch(int size) \
 	{ \
 		return size <= ES_MOD_SCRATCH_SIZE ? es_mod_scratch_buffer : (char *)-1; \
 	}

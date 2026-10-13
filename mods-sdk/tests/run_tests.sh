@@ -17,7 +17,7 @@ declare -A EXPECT=(
 )
 fail=0
 for mod in "${!EXPECT[@]}"; do
-	clang --target=wasm32 -O1 -nostdlib -Wl,--no-entry -I ../c -o "$mod/mod.wasm" "$mod/mod.c" || { echo "build failed: $mod"; fail=1; continue; }
+	clang --target=wasm32 -O1 -nostdlib -fno-builtin -Wl,--no-entry -I ../c -o "$mod/mod.wasm" "$mod/mod.c" || { echo "build failed: $mod"; fail=1; continue; }
 	got=$(timeout 60 "$MODCHECK" "$mod" 600 | grep -oE "^(OK|FAULTED|FAILED)")
 	if [ "$got" = "${EXPECT[$mod]}" ]; then echo "pass  $mod ($got)"; else echo "FAIL  $mod: expected ${EXPECT[$mod]}, got ${got:-nothing}"; fail=1; fi
 done

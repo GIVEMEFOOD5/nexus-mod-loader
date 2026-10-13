@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/_deps/wasmtime_c_api-subbuild/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

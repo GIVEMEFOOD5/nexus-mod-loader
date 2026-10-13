@@ -3,5 +3,5 @@
 set -e
 cd "$(dirname "$0")"
 SDK="${ES_MOD_SDK:-../../c}"
-clang --target=wasm32 -O2 -nostdlib -Wl,--no-entry -Wl,--strip-all -I "$SDK" -o mod.wasm hello.c
+clang --target=wasm32 -O2 -nostdlib -fno-builtin -Wl,--no-entry -Wl,--strip-all -I "$SDK" -o mod.wasm hello.c
 echo "Built $(pwd)/mod.wasm"

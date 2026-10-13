@@ -1,0 +1,3 @@
+/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/_deps/wasmtime_c_api-subbuild/CMakeFiles/wasmtime_c_api-populate.dir
+/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/_deps/wasmtime_c_api-subbuild/CMakeFiles/edit_cache.dir
+/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/_deps/wasmtime_c_api-subbuild/CMakeFiles/rebuild_cache.dir

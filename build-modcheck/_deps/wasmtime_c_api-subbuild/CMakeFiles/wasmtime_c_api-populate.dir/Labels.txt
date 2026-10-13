@@ -1,0 +1,14 @@
+# Target labels
+ wasmtime_c_api-populate
+# Source files and their labels
+/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/_deps/wasmtime_c_api-subbuild/CMakeFiles/wasmtime_c_api-populate
+/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/_deps/wasmtime_c_api-subbuild/CMakeFiles/wasmtime_c_api-populate.rule
+/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/_deps/wasmtime_c_api-subbuild/CMakeFiles/wasmtime_c_api-populate-complete.rule
+/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/_deps/wasmtime_c_api-subbuild/wasmtime_c_api-populate-prefix/src/wasmtime_c_api-populate-stamp/wasmtime_c_api-populate-build.rule
+/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/_deps/wasmtime_c_api-subbuild/wasmtime_c_api-populate-prefix/src/wasmtime_c_api-populate-stamp/wasmtime_c_api-populate-configure.rule
+/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/_deps/wasmtime_c_api-subbuild/wasmtime_c_api-populate-prefix/src/wasmtime_c_api-populate-stamp/wasmtime_c_api-populate-download.rule
+/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/_deps/wasmtime_c_api-subbuild/wasmtime_c_api-populate-prefix/src/wasmtime_c_api-populate-stamp/wasmtime_c_api-populate-install.rule
+/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/_deps/wasmtime_c_api-subbuild/wasmtime_c_api-populate-prefix/src/wasmtime_c_api-populate-stamp/wasmtime_c_api-populate-mkdir.rule
+/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/_deps/wasmtime_c_api-subbuild/wasmtime_c_api-populate-prefix/src/wasmtime_c_api-populate-stamp/wasmtime_c_api-populate-patch.rule
+/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/_deps/wasmtime_c_api-subbuild/wasmtime_c_api-populate-prefix/src/wasmtime_c_api-populate-stamp/wasmtime_c_api-populate-test.rule
+/home/givemefood5/Documents/GitHub/nexus-mod-loader/build-modcheck/_deps/wasmtime_c_api-subbuild/wasmtime_c_api-populate-prefix/src/wasmtime_c_api-populate-stamp/wasmtime_c_api-populate-update.rule

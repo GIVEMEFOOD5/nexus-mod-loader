@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Nexus Mod Manager</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<nav class="rail" aria-label="Sections">
+		<div class="brand">
+			<svg viewBox="0 0 32 32" aria-hidden="true"><line x1="16" y1="2" x2="16" y2="10"/><line x1="16" y1="22" x2="16" y2="30"/><circle cx="16" cy="16" r="6"/></svg>
+			<span>Nexus<br>Mod Manager</span>
+		</div>
+		<button class="tab" data-view="mods" aria-current="page">Mods</button>
+		<button class="tab" data-view="profiles">Profiles</button>
+		<button class="tab" data-view="console">Console <span class="dot" id="game-dot" hidden></span></button>
+		<button class="tab" data-view="settings">Settings</button>
+		<div class="rail-foot" id="rail-foot"></div>
+	</nav>
+
+	<main>
+		<!-- Mods -->
+		<section class="view" id="view-mods">
+			<header class="bar">
+				<div>
+					<h1>Mods</h1>
+					<button class="link" id="mods-folder" title="Show the mods folder"></button>
+				</div>
+				<div class="bar-actions">
+					<div class="menu-wrap">
+						<button id="add-btn" aria-haspopup="menu" aria-expanded="false">Add mod</button>
+						<div class="menu" id="add-menu" role="menu" hidden>
+							<button role="menuitem" data-add="folder">From a folder</button>
+							<button role="menuitem" data-add="link">Link a folder you're working on</button>
+							<button role="menuitem" data-add="zip">From a zip file</button>
+							<button role="menuitem" data-add="git">From GitHub</button>
+						</div>
+					</div>
+					<button id="new-btn">New mod</button>
+					<label class="check" title="Reload a mod in the running game whenever you rebuild it">
+						<input type="checkbox" id="dev-mode"> Live reload
+					</label>
+					<button class="primary" id="launch-btn">Launch game</button>
+				</div>
+			</header>
+
+			<div class="notice" id="no-order" hidden>
+				There's no load order yet, so the game runs every mod in the folder alphabetically.
+				Any change you make here saves one.
+			</div>
+
+			<div class="split">
+				<div class="routes">
+					<h2>Running, in load order</h2>
+					<p class="hint" id="route-hint">Drag to change the order. The top mod loads first.</p>
+					<ol class="route" id="route" aria-label="Mods that run, in load order"></ol>
+					<div class="empty" id="route-empty" hidden></div>
+
+					<h2 class="off-title">Turned off</h2>
+					<ul class="offroute" id="offroute" aria-label="Mods that are turned off"></ul>
+					<p class="hint" id="off-empty" hidden>Nothing turned off.</p>
+				</div>
+
+				<aside class="detail" id="detail" aria-live="polite">
+					<div class="detail-empty" id="detail-empty">
+						<p>Select a mod to see what it does, what it asks for, and how it tested.</p>
+					</div>
+					<div id="detail-body" hidden>
+						<div class="detail-head">
+							<h2 id="d-name"></h2>
+							<span class="version" id="d-version"></span>
+						</div>
+						<p class="meta" id="d-meta"></p>
+						<p class="desc" id="d-desc"></p>
+						<div class="actions" id="d-primary"></div>
+
+						<h3>Warnings</h3>
+						<ul class="warnings" id="d-warnings"></ul>
+
+						<h3>Last test</h3>
+						<p class="test" id="d-test"></p>
+
+						<div class="actions secondary" id="d-actions"></div>
+
+						<details class="output" id="d-output-wrap" hidden>
+							<summary id="d-output-title">Output</summary>
+							<pre id="d-output"></pre>
+						</details>
+					</div>
+				</aside>
+			</div>
+		</section>
+
+		<!-- Profiles -->
+		<section class="view" id="view-profiles" hidden>
+			<header class="bar">
+				<div>
+					<h1>Profiles</h1>
+					<p class="sub">Save which mods run, and in what order, to switch between sets quickly.</p>
+				</div>
+			</header>
+			<form class="inline-form" id="profile-form">
+				<label for="profile-name">Save the current setup as</label>
+				<input id="profile-name" placeholder="e.g. Combat testing" autocomplete="off">
+				<button type="submit">Save profile</button>
+			</form>
+			<ul class="profiles" id="profiles"></ul>
+			<p class="hint" id="profiles-empty">No profiles yet.</p>
+		</section>
+
+		<!-- Console -->
+		<section class="view" id="view-console" hidden>
+			<header class="bar">
+				<div>
+					<h1>Console</h1>
+					<p class="sub" id="game-status">The game isn't running.</p>
+				</div>
+				<div class="bar-actions">
+					<button id="stop-btn" hidden>Stop game</button>
+					<button class="primary" id="launch-btn-2">Launch game</button>
+				</div>
+			</header>
+			<div class="filters">
+				<label>Show
+					<select id="f-source">
+						<option value="mods">Mod output</option>
+						<option value="all">Everything</option>
+					</select>
+				</label>
+				<label>Level
+					<select id="f-level">
+						<option value="">All</option>
+						<option value="W">Warnings and errors</option>
+						<option value="E">Errors</option>
+					</select>
+				</label>
+				<label>Mod
+					<select id="f-mod"><option value="">Any</option></select>
+				</label>
+				<input type="search" id="f-text" placeholder="Search output" aria-label="Search output">
+				<button id="clear-log">Clear</button>
+			</div>
+			<div class="console" id="console" role="log" aria-live="off"></div>
+		</section>
+
+		<!-- Settings -->
+		<section class="view" id="view-settings" hidden>
+			<header class="bar">
+				<div>
+					<h1>Settings</h1>
+					<p class="sub">Where things are on this computer.</p>
+				</div>
+			</header>
+			<form class="settings" id="settings-form">
+				<div class="field">
+					<label for="s-game-dir">Game source folder</label>
+					<p class="hint">Your nexus-mod-loader checkout. The game, the mod SDK and the test tool are found from here.</p>
+					<div class="row"><input id="s-game-dir"><button type="button" data-browse="s-game-dir">Browse</button></div>
+					<p class="status" id="st-game"></p>
+				</div>
+				<div class="field">
+					<label for="s-game-exe">Game program <span class="optional">(optional)</span></label>
+					<p class="hint">Leave empty to use the one in the build folder.</p>
+					<div class="row"><input id="s-game-exe"><button type="button" data-browse-file="s-game-exe">Browse</button></div>
+				</div>
+				<div class="field">
+					<label for="s-mods-dir">Mods folder</label>
+					<p class="hint">Where the game looks for code mods.</p>
+					<div class="row"><input id="s-mods-dir"><button type="button" data-browse="s-mods-dir">Browse</button></div>
+				</div>
+				<div class="field">
+					<label for="s-editor">Editor command <span class="optional">(optional)</span></label>
+					<p class="hint">Used by "Open in editor", e.g. <code>code</code> or <code>gnome-text-editor</code>. Empty opens the folder.</p>
+					<div class="row"><input id="s-editor"></div>
+				</div>
+				<div class="row end"><button type="submit" class="primary">Save settings</button></div>
+			</form>
+
+			<div class="tools">
+				<h2>Tools</h2>
+				<div class="tool">
+					<div>
+						<h3>Mod SDK</h3>
+						<p class="status" id="st-sdk"></p>
+					</div>
+				</div>
+				<div class="tool">
+					<div>
+						<h3>Test tool</h3>
+						<p class="hint">Runs a mod for a minute of simulated flight outside the game, to catch crashes and slow code.</p>
+						<p class="status" id="st-modcheck"></p>
+					</div>
+					<button id="build-tool">Build test tool</button>
+				</div>
+				<div class="tool">
+					<div>
+						<h3>Check with the game</h3>
+						<p class="hint">Asks the game which mods it would run, and why it would skip any.</p>
+					</div>
+					<button id="check-game">Check now</button>
+				</div>
+				<details class="output" id="tool-output-wrap" hidden>
+					<summary>Output</summary>
+					<pre id="tool-output"></pre>
+				</details>
+			</div>
+		</section>
+	</main>
+
+	<dialog id="dialog">
+		<form method="dialog" id="dialog-form">
+			<h2 id="dlg-title"></h2>
+			<div id="dlg-body"></div>
+			<div class="row end">
+				<button value="cancel" id="dlg-cancel">Cancel</button>
+				<button value="ok" class="primary" id="dlg-ok">OK</button>
+			</div>
+		</form>
+	</dialog>
+
+	<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+	<script src="app.js"></script>
+</body>
+</html>
